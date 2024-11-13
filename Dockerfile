@@ -18,7 +18,7 @@ FROM openjdk:17-jdk-slim
 ENV JAVA_OPTS=""
 
 # Skopiuj plik JAR do kontenera
-COPY target/demoDockerCompose-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build target/demoDockerCompose-0.0.1-SNAPSHOT.jar app.jar
 
 # Uruchom aplikację
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app.jar"]
