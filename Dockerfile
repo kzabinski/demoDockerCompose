@@ -15,15 +15,13 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jdk-jammy
 
 # Ustawianie workdira w kontenerze
-WORKDIR /app/target
+WORKDIR /app
 
-RUN ls /app/target
-
-# Skopiuj plik JAR do kontenera
-COPY /app/target/demoDockerCompose-0.0.1-SNAPSHOT.jar app.jar
+# Skopiowanie zbudowanej jarki z kontenera budującego do kontenera uruchamiającego aplikację
+COPY --from=build /app/target/demoDockerCompose-0.0.1-SNAPSHOT.jar /app/demoWeb.jar
 
 # Wystawienie portu 8080
 EXPOSE 8080
 
-# Uruchom aplikację
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app.jar"]
+# Uruchomienie aplikacji przy starcie kontenera
+ENTRYPOINT ["java", "-jar", "/app/demoWeb.jar"]
