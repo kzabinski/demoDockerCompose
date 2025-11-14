@@ -15,7 +15,9 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jdk-jammy
 
 # Ustawianie workdira w kontenerze
-WORKDIR /app
+WORKDIR /app/target
+
+RUN ls /app/target
 
 # Skopiuj plik JAR do kontenera
 COPY /app/target/demoDockerCompose-0.0.1-SNAPSHOT.jar app.jar
