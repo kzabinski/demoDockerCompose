@@ -14,11 +14,14 @@ RUN mvn clean package -DskipTests
 # Wybranie lekkiego kontenera linuxowego z openjdk17
 FROM eclipse-temurin:17-jdk-jammy
 
-# Ustaw zmienną środowiskową dla Javy
-ENV JAVA_OPTS=""
+# Ustawianie workdira w kontenerze
+WORKDIR /app
 
 # Skopiuj plik JAR do kontenera
 COPY /app/target/demoDockerCompose-0.0.1-SNAPSHOT.jar app.jar
+
+# Wystawienie portu 8080
+EXPOSE 8080
 
 # Uruchom aplikację
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app.jar"]
