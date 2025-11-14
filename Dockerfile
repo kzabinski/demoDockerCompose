@@ -1,5 +1,5 @@
 # Użycie obrazu JDK jako bazowego
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-jammy
 
 # Ustaw zmienną środowiskową dla Javy
 ENV JAVA_OPTS=""
