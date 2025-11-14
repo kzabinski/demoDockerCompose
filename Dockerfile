@@ -18,7 +18,7 @@ FROM eclipse-temurin:17-jdk-jammy
 ENV JAVA_OPTS=""
 
 # Skopiuj plik JAR do kontenera
-COPY target/demoDockerCompose-0.0.1-SNAPSHOT.jar app.jar
+COPY app/target/demoDockerCompose-0.0.1-SNAPSHOT.jar app.jar
 
 # Uruchom aplikację
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app.jar"]
